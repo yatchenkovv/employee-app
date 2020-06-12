@@ -1,0 +1,1 @@
+export interface IDispatchCustom { type: string, payload?: object}
