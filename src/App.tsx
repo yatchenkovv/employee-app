@@ -19,6 +19,8 @@ import { EmployeesList } from './components/employees/employees.list';
 
 // services
 import { domService } from './services/domService';
+import { appService } from './services/appService';
+import { store } from './store/configureStore';
 
 export class App extends React.Component {
   render() {
@@ -60,8 +62,12 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IDispatchCustom>) => {
   return {
     onSelectedEmployee: (id: number) => dispatch({ type: 'SELECTED_EMPLOYEE', payload: { Id: id } }),
     onSaveChangesEmployee: () => dispatch({ type: 'SAVE_CHANGES' }),
-    onUpdateDataEmployees: () => dispatch({ type: 'UPDATE_DATA_EMPLOYEES' }),
-    onDeleteSelectedEmployee: () => dispatch({ type: 'DELETE_SELECTED_EMPLOYEE' }),
+    onUpdateDataEmployees: () => {
+      appService.clearEmployeeCardFields();
+      return dispatch({ type: 'UPDATE_DATA_EMPLOYEES' }) },
+    onDeleteSelectedEmployee: () => {
+      appService.clearEmployeeCardFields();
+      return dispatch({ type: 'DELETE_SELECTED_EMPLOYEE' })},
     onAddNewEmployee: () => {
       const _fullName = domService.getValue('fullName');
       const _position = domService.getValue('position');
@@ -82,7 +88,6 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IDispatchCustom>) => {
         gender: _gender,
         isFired: _isFired,
       }
-      console.log('_newEmployee', _newEployee);
       return dispatch({ type: 'ADD_NEW_EMPLOYEE', payload: { newEmployee: _newEployee  } });
     }
   }

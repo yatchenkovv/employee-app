@@ -17,7 +17,6 @@ export class EmployeesList extends Component<IProps> {
     private unsubscribeStore: Function = () => {};
     private updatetStateFromStore() {
         const state = store.getState();
-
         this.setState({
             ...state
         });

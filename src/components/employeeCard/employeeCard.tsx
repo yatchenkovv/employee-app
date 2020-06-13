@@ -16,7 +16,6 @@ export class EmployeeCard extends Component<IEmployeeCardProps> {
     }
 
     public handleChangeFullName(event: React.ChangeEvent<HTMLInputElement>) {
-        (window as any).formModified = true;
         this.setState({
             hasChangedControl: true,
             selectedEmployee: Object.assign(this.props.employee, { fullName:  event.target.value })
@@ -98,6 +97,7 @@ export class EmployeeCard extends Component<IEmployeeCardProps> {
                                     <label>Дата рождения</label>
                                     <div className="form-control">
                                         <DatePicker
+                                            name="date"
                                             selected={this.getUTCDate(employee.dateOfBirth)}
                                             onChange={this.handleChangeDate}   
                                         />
