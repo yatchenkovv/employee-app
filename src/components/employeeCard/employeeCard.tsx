@@ -16,7 +16,6 @@ export class EmployeeCard extends Component<IEmployeeCardProps> {
     }
 
     public handleChangeFullName(event: React.ChangeEvent<HTMLInputElement>) {
-        console.log('change log fullname ');
         (window as any).formModified = true;
         this.setState({
             hasChangedControl: true,

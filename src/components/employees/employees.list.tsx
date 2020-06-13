@@ -28,7 +28,6 @@ export class EmployeesList extends Component<IProps> {
     }
 
     componentWillUnmount() {
-        console.log('log unmount component');
         this.unsubscribeStore();
     }
 
