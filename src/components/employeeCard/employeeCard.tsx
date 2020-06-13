@@ -109,7 +109,7 @@ export class EmployeeCard extends Component<IEmployeeCardProps> {
                                         <label className="radio-inline">
                                             Муж &nbsp;
                                             <input type="radio"
-                                                    name="genderradioM"
+                                                    name="famle"
                                                     value='Муж'
                                                     checked={employee.gender === 'Муж'}
                                                     onChange={this.handleChangeGender} />
@@ -118,7 +118,7 @@ export class EmployeeCard extends Component<IEmployeeCardProps> {
                                         <label className="radio-inline">
                                             Жен &nbsp;
                                             <input type="radio"
-                                                    name="genderradioW"
+                                                    name="woman"
                                                     value='Жен'
                                                     checked={employee.gender === 'Жен'}
                                                     onChange={this.handleChangeGender}/>

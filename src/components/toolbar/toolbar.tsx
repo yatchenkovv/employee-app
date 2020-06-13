@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import { IToolbarProps } from '../../interfaces/IToolbarProps';
+import { store } from '../../store/configureStore';
 
 export class Toolbar extends Component<IToolbarProps> {
     constructor(props: IToolbarProps) {
         super(props);
+    }
+
+    private unsubscribeStore: Function = () => {}
+
+    componentDidMount() {
+        document.getElementsByName('fullName')[0].addEventListener('keyup', () => {
+            console.log("change log fullname");
+        })
+    }
+
+    componentWillUnmount() {
+        this.unsubscribeStore();
     }
 
     render() {

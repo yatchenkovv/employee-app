@@ -17,6 +17,9 @@ import { IHandleData } from './interfaces/IHandleData';
 import { IDispatchCustom } from './interfaces/IDispatchCustom';
 import { EmployeesList } from './components/employees/employees.list';
 
+// services
+import { domService } from './services/domService';
+
 export class App extends React.Component {
   render() {
     return (
@@ -60,18 +63,17 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IDispatchCustom>) => {
     onUpdateDataEmployees: () => dispatch({ type: 'UPDATE_DATA_EMPLOYEES' }),
     onDeleteSelectedEmployee: () => dispatch({ type: 'DELETE_SELECTED_EMPLOYEE' }),
     onAddNewEmployee: () => {
-      const _fullName = (document.getElementsByName('fullName')[0] as HTMLInputElement).value;
-      const _position = (document.getElementsByName('position')[0] as HTMLSelectElement).value;
-      const _dateOfBirth = (document.querySelector(".react-datepicker__input-container > input") as HTMLInputElement).value;
-      const _isFired = (document.getElementsByName('fired')[0] as HTMLInputElement).checked;
+      const _fullName = domService.getValue('fullName');
+      const _position = domService.getValue('position');
+      const _dateOfBirth = domService.getValue(".react-datepicker__input-container > input");
+      const _isFired = domService.getValue('fired');
       let _gender = '';
-      if ((document.getElementsByName('genderradioM')[0] as HTMLInputElement).checked === true) {
+      if (domService.getValue('famle')) {
         _gender = 'Муж';
       }
-      if ((document.getElementsByName('genderradioW')[0] as HTMLInputElement).checked === true) {
+      if (domService.getValue('woman')) {
         _gender = 'Жен';
       }
-
       const _newEployee = {
         Id: 0,
         fullName: _fullName,
@@ -80,6 +82,7 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IDispatchCustom>) => {
         gender: _gender,
         isFired: _isFired,
       }
+      console.log('_newEmployee', _newEployee);
       return dispatch({ type: 'ADD_NEW_EMPLOYEE', payload: { newEmployee: _newEployee  } });
     }
   }
